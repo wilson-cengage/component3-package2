@@ -4,7 +4,7 @@ const path = require('path');
 const nodeEnv = process.env.NODE_ENV || 'development';
 const isProd = nodeEnv === 'production';
 
-const packageName = 'component3-package2';
+const packageName = process.env.PACKAGE_NAME;
 
 module.exports = {
   devtool: isProd ? 'hidden-source-map' : 'cheap-eval-source-map',
@@ -15,9 +15,7 @@ module.exports = {
   },
   output: {
     path: path.join(__dirname, './static/'),
-    publicPath: '/components/',   /* for bundle chunk lookup during runtime, should eventually be CMP /components/component3-package1/ */
     filename: '[name].js',
-    chunkFilename: `${packageName}/${packageName}-[id].js`,
     libraryTarget: 'umd'
   },
   externals: {
@@ -80,10 +78,6 @@ module.exports = {
     }),
     new webpack.DefinePlugin({
       'process.env': { NODE_ENV: JSON.stringify(nodeEnv) }
-    }),
-    new webpack.optimize.CommonsChunkPlugin({
-      children: true,     /** deps shared by chunks are extracted into its own async chunk **/
-      async: true
     })
   ],
   devServer: {

@@ -1,32 +1,16 @@
 import React from 'react';
+import Popover from 'react-bootstrap/lib/Popover';
 
 import './style.css';
 
-export default class DropDown extends React.Component {
-
-    constructor(props) {
-        super(props);
-        this.state = {
-            "implementation": null
-        }
-    }
-
-    componentDidMount() {
-        System.import('./implementation').then(implementation => {
-            this.setState({
-                "implementation": implementation.default
-            });
-        });
-    }
+export default class HintImplementation extends React.Component {
 
     render() {
-        let implementationContent = null;
-        if (this.state.implementation != null) {
-            implementationContent = <this.state.implementation/>;
-        }
         return (
-            <div>
-                {implementationContent}
+            <div style={{ height: 120 }}>
+                <Popover placement="right" positionLeft={200} positionTop={50} title="Popover right">
+                    And here's some <strong>amazing</strong> content. It's very engaging. right?
+                </Popover>
             </div>
         );
     }
