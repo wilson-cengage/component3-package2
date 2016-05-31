@@ -5,8 +5,8 @@ node_modules
 _nogit
 
 # local server
-static
-components
+/static
+/components
 
 # IntelliJ
 .idea

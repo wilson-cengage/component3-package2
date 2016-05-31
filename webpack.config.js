@@ -4,7 +4,7 @@ const path = require('path');
 const nodeEnv = process.env.NODE_ENV || 'development';
 const isProd = nodeEnv === 'production';
 
-const packageName = 'component3-package1';
+const packageName = 'component3-package2';
 
 module.exports = {
   devtool: isProd ? 'hidden-source-map' : 'cheap-eval-source-map',
