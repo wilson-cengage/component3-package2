@@ -5,6 +5,7 @@ const nodeEnv = process.env.NODE_ENV || 'development';
 const isProd = nodeEnv === 'production';
 
 const packageName = process.env.PACKAGE_NAME;
+const jsonpPackageName = packageName.replace( /\W/g , '');
 
 module.exports = {
   devtool: isProd ? 'hidden-source-map' : 'cheap-eval-source-map',
@@ -17,7 +18,7 @@ module.exports = {
     path: path.join(__dirname, './static/'),
     filename: '[name].js',
     libraryTarget: 'umd',
-    jsonpFunction: `${packageName}jsonpFunction`,   /* jsonp function must be unique for the entire cengage universe, so that webpack chunk loaders for each package don't collide */
+    jsonpFunction: `${jsonpPackageName}jsonpFunction`,   /* jsonp function must be unique within the entire cengage universe, so that webpack chunk loaders for each package don't collide */
     chunkFilename: `${packageName}/${packageName}-[id].js`,
     publicPath: '/components/'   /* for bundle chunk lookup during runtime, should eventually be CMP /components/component3-package1/ */
   },
