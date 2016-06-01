@@ -16,7 +16,10 @@ module.exports = {
   output: {
     path: path.join(__dirname, './static/'),
     filename: '[name].js',
-    libraryTarget: 'umd'
+    libraryTarget: 'umd',
+    jsonpFunction: `${packageName}jsonpFunction`,   /* jsonp function must be unique for the entire cengage universe, so that webpack chunk loaders for each package don't collide */
+    chunkFilename: `${packageName}/${packageName}-[id].js`,
+    publicPath: '/components/'   /* for bundle chunk lookup during runtime, should eventually be CMP /components/component3-package1/ */
   },
   externals: {
     'react': 'React',
@@ -78,6 +81,13 @@ module.exports = {
     }),
     new webpack.DefinePlugin({
       'process.env': { NODE_ENV: JSON.stringify(nodeEnv) }
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
+      children: true,     /** deps shared by chunks are extracted into its own async chunk **/
+      async: true
+    }),
+    new webpack.optimize.LimitChunkCountPlugin({
+      maxChunks: 5        /** Too many chunks means too many async requests before component can be rendered */
     })
   ],
   devServer: {
