@@ -1,6 +1,6 @@
 {
   "name": "component3-package2",
-  "version": "0.0.6",
+  "version": "0.0.10",
   "private": true,
   "description": "Component Sample - React, Webpack 2",
   "main": "dist/component3-package2.js",
