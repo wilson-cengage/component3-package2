@@ -5,9 +5,9 @@ gulp.task('prebuild', function(packageName) {
     console.log(`gulp prebuild packageName: ${packageName}`);
 
     del([
-       'dist',
+        'dist',
         'components',
-        'static'
+        'build'
     ]);
 });
 
@@ -16,7 +16,7 @@ gulp.task('postbuild', function(packageName) {
     console.log(`gulp postbuild packageName: ${packageName}`);
     // place code for your default task here
 
-    gulp.src([`static/${packageName}/**`]).pipe(gulp.dest(`dist`));
-    gulp.src([`static/${packageName}/**`]).pipe(gulp.dest(`components/${packageName}`));
+    gulp.src([`build/${packageName}/**`]).pipe(gulp.dest(`dist`));
+    gulp.src([`build/${packageName}/**`]).pipe(gulp.dest(`components/${packageName}`));
 
 });

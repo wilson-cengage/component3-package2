@@ -1,13 +1,13 @@
 {
   "name": "component3-package2",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "private": true,
   "description": "Component Sample - React, Webpack 2",
   "main": "dist/component3-package2.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "./node_modules/.bin/webpack-dev-server --history-api-fallback --progress --port 3000",
-    "build": "node build.js development $npm_package_name",
+    "build": "node build.js production $npm_package_name",
     "prebuild": "gulp prebuild --packageName $npm_package_name",
     "postbuild": "gulp postbuild --packageName $npm_package_name"
   },
