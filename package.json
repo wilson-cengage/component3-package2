@@ -6,6 +6,7 @@
   "main": "dist/component3-package2.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "prestart": "gulp prebuild --packageName $npm_package_name",
     "start": "./node_modules/.bin/webpack-dev-server --history-api-fallback --progress --port 3000",
     "build": "node build.js production $npm_package_name",
     "prebuild": "gulp prebuild --packageName $npm_package_name",
